@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服务 · 尤浈棋墙绘 | Leistungen — YOU Zhenqi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Noto+Sans+SC:wght@400;500;700&family=Archivo:wght@400;600;700;800&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   尤浈棋墙绘工作室 — 全站样式
+   设计语言：plaster 墙底 / terracotta 赭红 / 手工质感
+   ============================================================ */
+:root{
+  --plaster:#E9E2D4;
+  --plaster-2:#DED4C0;
+  --plaster-3:#D3C7AF;
+  --paper:#F3EEE3;
+  --ink:#241E18;
+  --ink-soft:#4A4036;
+  --ink-faint:#7A6E60;
+  --terra:#C2502E;
+  --terra-deep:#9C3D22;
+  --terra-light:#D9683F;
+  --ochre:#D88A3F;
+  --teal:#2E5D5A;
+  --gold:#C99A4B;
+  --line:rgba(36,30,24,.15);
+  --line-strong:rgba(36,30,24,.35);
+  --shadow:24px 24px 0 rgba(36,30,24,.06);
+  --serif:'Noto Serif SC',serif;
+  --sans:'Archivo','Noto Sans SC',sans-serif;
+  --black:'Archivo Black',sans-serif;
+  --maxw:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--plaster);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(0,0,0,.022) 0%, transparent 7%),
+    radial-gradient(circle at 68% 58%, rgba(0,0,0,.018) 0%, transparent 8%),
+    radial-gradient(circle at 88% 12%, rgba(0,0,0,.018) 0%, transparent 6%),
+    radial-gradient(circle at 40% 80%, rgba(0,0,0,.015) 0%, transparent 7%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- 语言切换 ---------- */
+.de [data-zh]{display:none}
+[data-de]{display:none}
+.de [data-de]{display:inline}
+.de [data-de].block{display:block}
+
+/* ---------- 顶栏 ---------- */
+header.site{
+  position:sticky;top:0;z-index:100;
+  background:rgba(233,226,212,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);transition:transform .35s;
+}
+header.site.hide{transform:translateY(-100%)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:var(--serif);font-weight:900;font-size:21px;letter-spacing:.03em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+.brand .dot{width:9px;height:9px;background:var(--terra);border-radius:50%;display:inline-block}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a.nl{text-decoration:none;color:var(--ink-soft);font-size:14px;font-weight:600;letter-spacing:.02em;position:relative;padding:4px 0;transition:color .2s}
+.nav-links a.nl::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--terra);transition:width .25s}
+.nav-links a.nl:hover,.nav-links a.nl.active{color:var(--terra)}
+.nav-links a.nl:hover::after,.nav-links a.nl.active::after{width:100%}
+.lang-toggle{display:flex;border:1.5px solid var(--ink);border-radius:40px;overflow:hidden}
+.lang-toggle button{border:none;background:transparent;padding:6px 13px;cursor:pointer;font-weight:800;color:var(--ink-soft);font-size:12px;letter-spacing:.04em;font-family:inherit}
+.lang-toggle button.active{background:var(--ink);color:var(--plaster)}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px;z-index:101}
+.menu-btn span{width:26px;height:2px;background:var(--ink);display:block;transition:.3s}
+.menu-btn.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn.x span:nth-child(2){opacity:0}
+.menu-btn.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- 按钮 ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;padding:15px 30px;border-radius:2px;transition:transform .15s,box-shadow .2s,background .2s,color .2s;letter-spacing:.02em;cursor:pointer;border:none;font-family:inherit}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:4px 4px 0 var(--ink)}
+.btn-primary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--plaster)}
+.btn-light{background:var(--plaster);color:var(--ink)}
+.btn-light:hover{transform:translateY(-2px)}
+
+/* ---------- section 通用 ---------- */
+.section{padding:96px 0;position:relative}
+.sec-head{margin-bottom:54px;max-width:720px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-tag{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:18px}
+.sec-tag::before{content:"";width:34px;height:2px;background:var(--terra)}
+.sec-head.center .sec-tag::before{display:none}
+.sec-title{font-family:var(--serif);font-weight:900;font-size:clamp(30px,5vw,52px);line-height:1.04;letter-spacing:-.01em}
+.sec-sub{font-size:18px;line-height:1.65;color:var(--ink-soft);margin-top:20px}
+
+/* ---------- 页面顶部 banner ---------- */
+.page-hero{padding:80px 0 64px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.page-hero .eyebrow{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:20px}
+.page-hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,7vw,76px);line-height:1;letter-spacing:-.01em}
+.page-hero .ph-lead{font-size:clamp(17px,2.2vw,20px);line-height:1.6;color:var(--ink-soft);max-width:580px;margin-top:24px}
+.page-hero .ph-deco{position:absolute;right:-30px;bottom:-40px;width:300px;opacity:.5;pointer-events:none}
+@media(max-width:760px){.page-hero .ph-deco{display:none}}
+
+/* ---------- 滚动渐入 ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* ---------- 页脚 ---------- */
+footer.site{background:var(--ink);color:rgba(233,226,212,.62);padding:72px 0 36px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:48px}
+footer .brand{color:var(--plaster);font-size:22px;margin-bottom:16px}
+footer .f-about{max-width:340px;line-height:1.7;font-size:15px}
+.foot-col h4{color:var(--plaster);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;font-weight:700}
+.foot-col a{display:block;text-decoration:none;color:rgba(233,226,212,.62);font-size:15px;margin-bottom:12px;transition:color .2s}
+.foot-col a:hover{color:var(--ochre)}
+.foot-bottom{border-top:1px solid rgba(233,226,212,.16);padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+
+/* ---------- 移动端 ---------- */
+@media(max-width:880px){
+  .wrap{padding:0 22px}
+  .section{padding:68px 0}
+  .menu-btn{display:flex}
+  .nav-links{position:fixed;inset:74px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;padding:0;border-bottom:0 solid var(--line);max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;box-shadow:0 20px 40px rgba(36,30,24,.12)}
+  .nav-links.open{max-height:440px;padding:8px 0 20px;border-bottom:1px solid var(--line)}
+  .nav-links a.nl{padding:16px 26px;width:100%;border-bottom:1px solid var(--line)}
+  .nav-links a.nl::after{display:none}
+  .lang-toggle{margin:16px 26px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none}
+  html{scroll-behavior:auto}
+  *{animation:none!important}
+}
+
+/* ============================================================
+   组件样式 — 各页面专用模块
+   ============================================================ */
+
+/* ===== 首页 HERO ===== */
+.home-hero{padding:80px 0 60px;position:relative;min-height:78vh;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:28px}
+.hero-eyebrow::before{content:"";width:40px;height:2px;background:var(--terra)}
+.home-hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(46px,7.5vw,88px);line-height:.98;letter-spacing:-.015em;margin-bottom:10px}
+.home-hero h1 .accent{color:var(--terra)}
+.home-hero .sub-name{font-family:var(--black);font-size:clamp(13px,1.8vw,17px);letter-spacing:.32em;text-transform:uppercase;color:var(--ink-faint);margin:16px 0 30px}
+.home-hero .lead{font-size:clamp(17px,2.1vw,20px);line-height:1.62;max-width:500px;color:var(--ink-soft);margin-bottom:38px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:42px}
+.hero-stats{display:flex;gap:0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.hero-stats .stat{flex:1;padding:22px 4px;border-right:1px solid var(--line)}
+.hero-stats .stat:last-child{border-right:none}
+.hero-stats .num{font-family:var(--black);font-size:clamp(24px,3.6vw,38px);color:var(--terra-deep);line-height:1}
+.hero-stats .lbl{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--ink-soft);margin-top:8px;text-transform:uppercase}
+/* hero 视觉拼贴 */
+.hero-art{position:relative;aspect-ratio:4/5}
+.hero-art .blob{position:absolute;inset:0;z-index:0}
+.hero-art .frame{position:absolute;border:2px solid var(--ink);overflow:hidden;background:var(--plaster-2)}
+.hero-art .f1{inset:6% 12% 30% 6%;z-index:2;box-shadow:14px 14px 0 var(--terra)}
+.hero-art .f2{width:46%;aspect-ratio:1;right:2%;bottom:6%;z-index:3;box-shadow:10px 10px 0 var(--teal)}
+.hero-art .ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-faint);font-weight:700;font-size:13px;text-align:center;padding:14px;background:linear-gradient(135deg,var(--plaster-2),var(--plaster-3))}
+.hero-art .ph .ic{font-size:30px;opacity:.55}
+@media(max-width:880px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-art{max-width:380px;margin:0 auto}
+}
+
+/* ===== 通用图片占位 ===== */
+.ph-box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-faint);font-weight:700;font-size:13px;text-align:center;padding:18px;background:linear-gradient(135deg,var(--plaster-2),var(--plaster-3));width:100%;height:100%}
+.ph-box .ic{font-size:28px;opacity:.5}
+
+/* ===== 作品网格 ===== */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.filter-bar button{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink-soft);padding:10px 22px;border-radius:40px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
+.filter-bar button:hover{border-color:var(--ink)}
+.filter-bar button.active{background:var(--ink);color:var(--plaster);border-color:var(--ink)}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.work-card{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--plaster-2);cursor:pointer;aspect-ratio:4/5}
+.work-card.wide{grid-column:span 2;aspect-ratio:8/5}
+.work-card img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.work-card:hover img{transform:scale(1.06)}
+.work-card .ph-box{aspect-ratio:auto;height:100%}
+.work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(36,30,24,.86),rgba(36,30,24,.1) 55%,transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;opacity:0;transition:opacity .3s}
+.work-card:hover .work-overlay{opacity:1}
+.work-overlay .wt{color:#fff;font-family:var(--serif);font-weight:600;font-size:20px}
+.work-overlay .wc{color:var(--ochre);font-size:13px;font-weight:700;margin-top:5px;letter-spacing:.04em;text-transform:uppercase}
+.work-overlay .zoom{position:absolute;top:18px;right:18px;width:40px;height:40px;border:1.5px solid rgba(255,255,255,.6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+@media(max-width:760px){.work-grid{grid-template-columns:1fr 1fr;gap:12px}.work-card.wide{grid-column:span 2}}
+@media(max-width:480px){.work-grid{grid-template-columns:1fr}.work-card.wide{grid-column:span 1}}
+
+/* ===== 灯箱 ===== */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(20,16,12,.92);display:none;align-items:center;justify-content:center;padding:30px}
+.lightbox.open{display:flex}
+.lb-inner{max-width:900px;width:100%;max-height:90vh;display:flex;flex-direction:column}
+.lb-media{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:var(--plaster-2);border:2px solid var(--plaster)}
+.lb-media img{max-width:100%;max-height:72vh;object-fit:contain}
+#lbPh{width:100%;height:50vh;flex-direction:column}
+.lb-cap{background:var(--plaster);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.lb-cap .lbt{font-family:var(--serif);font-weight:700;font-size:22px}
+.lb-cap .lbc{color:var(--terra);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.lb-close{position:absolute;top:24px;right:30px;width:48px;height:48px;border:1.5px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-close:hover{background:var(--terra);border-color:var(--terra)}
+
+/* ===== 服务卡片 ===== */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc{background:var(--plaster);padding:40px 32px;transition:background .3s}
+.svc:hover{background:var(--paper)}
+.svc .svc-no{font-family:var(--black);font-size:14px;color:var(--terra);letter-spacing:.1em}
+.svc h3{font-family:var(--serif);font-weight:600;font-size:25px;margin:14px 0 14px}
+.svc p{font-size:15px;line-height:1.7;color:var(--ink-soft)}
+.svc .svc-list{list-style:none;margin-top:18px}
+.svc .svc-list li{font-size:14px;color:var(--ink-soft);padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--line)}
+.svc .svc-list li::before{content:"→";position:absolute;left:0;color:var(--terra);font-weight:700}
+@media(max-width:760px){.svc-grid{grid-template-columns:1fr}}
+
+/* dark 变体 */
+.section.dark{background:var(--ink);color:var(--plaster)}
+.section.dark .sec-title{color:var(--plaster)}
+.section.dark .sec-sub{color:rgba(233,226,212,.72)}
+.section.dark .sec-tag{color:var(--ochre)}
+.section.dark .svc-grid{background:rgba(233,226,212,.16);border-color:rgba(233,226,212,.16)}
+.section.dark .svc{background:var(--ink)}
+.section.dark .svc:hover{background:#322a22}
+.section.dark .svc h3{color:var(--plaster)}
+.section.dark .svc p,.section.dark .svc .svc-list li{color:rgba(233,226,212,.72)}
+.section.dark .svc .svc-list li{border-color:rgba(233,226,212,.16)}
+
+/* ===== 流程时间线 ===== */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.process::before{content:"";position:absolute;top:34px;left:8%;right:8%;height:2px;background:var(--line-strong);z-index:0}
+.step{position:relative;z-index:1;text-align:center}
+.step .step-no{width:68px;height:68px;margin:0 auto 22px;border-radius:50%;background:var(--plaster);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--black);font-size:24px;color:var(--terra-deep)}
+.step:hover .step-no{background:var(--terra);color:#fff;border-color:var(--terra)}
+.step h4{font-family:var(--serif);font-weight:600;font-size:19px;margin-bottom:10px}
+.step p{font-size:14px;line-height:1.6;color:var(--ink-soft)}
+@media(max-width:760px){.process{grid-template-columns:1fr 1fr;gap:30px}.process::before{display:none}}
+
+/* ===== 关于/特色 ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.about-img{aspect-ratio:4/5;border:2px solid var(--ink);box-shadow:18px 18px 0 var(--terra);overflow:hidden;background:var(--plaster-2)}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-text p{font-size:16px;line-height:1.75;color:var(--ink-soft);margin-bottom:18px}
+.about-quote{font-family:var(--serif);font-size:24px;line-height:1.45;color:var(--ink);font-weight:600;border-left:3px solid var(--terra);padding-left:22px;margin:28px 0}
+.tag-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tag{border:1.5px solid var(--line-strong);padding:8px 18px;border-radius:40px;font-size:13px;font-weight:600;color:var(--ink-soft)}
+@media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:36px}.about-img{max-width:380px}}
+
+/* ===== 客户/信任条 ===== */
+.client-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.client-chip{border:1.5px solid var(--ink);padding:14px 28px;border-radius:40px;font-weight:700;font-size:16px}
+.client-chip.hl{background:var(--terra);color:#fff;border-color:var(--terra)}
+
+/* ===== 数字大标 ===== */
+.bignum-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.bignum{text-align:center}
+.bignum .n{font-family:var(--black);font-size:clamp(40px,6vw,64px);color:var(--terra);line-height:1}
+.bignum .l{font-size:14px;font-weight:600;color:var(--ink-soft);margin-top:10px}
+@media(max-width:600px){.bignum-grid{grid-template-columns:1fr 1fr;gap:30px}}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:820px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;font-family:var(--serif);font-weight:600;font-size:19px;color:var(--ink);font-family:inherit}
+.faq-q .fq-ic{flex-shrink:0;width:32px;height:32px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;transition:.3s}
+.faq-item.open .fq-ic{background:var(--terra);color:#fff;border-color:var(--terra);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a p{padding:0 0 26px;font-size:15px;line-height:1.7;color:var(--ink-soft)}
+
+/* ===== 报价表单 ===== */
+.quote-wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+.quote-info .contact-methods{display:flex;flex-direction:column;gap:24px;margin-top:30px}
+.cm{display:flex;align-items:center;gap:18px}
+.cm .cm-ic{width:54px;height:54px;flex-shrink:0;border:2px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.cm .cm-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+.cm .cm-val{font-size:20px;font-weight:700;margin-top:3px}
+.qr-card{margin-top:30px;display:inline-flex;flex-direction:column;align-items:center;background:#fff;padding:22px;border:1px solid var(--line);box-shadow:8px 8px 0 var(--plaster-3);max-width:220px}
+.qr-box{width:160px;height:160px;background:var(--plaster);border:2px dashed var(--ink-faint);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-faint);font-weight:700;font-size:12px;text-align:center;padding:14px}
+.qr-card .qr-name{font-weight:800;margin-top:14px;font-size:14px}
+.quote-form{background:var(--paper);border:1px solid var(--line);padding:36px}
+.field{margin-bottom:22px}
+.field label{display:block;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:9px}
+.field input,.field textarea{width:100%;background:var(--plaster);border:1.5px solid var(--line-strong);padding:13px 15px;font-family:inherit;font-size:15px;color:var(--ink);border-radius:2px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--terra)}
+.field textarea{resize:vertical;min-height:110px}
+.type-pills{display:flex;flex-wrap:wrap;gap:10px}
+.type-pills label{display:inline-flex;align-items:center;cursor:pointer;border:1.5px solid var(--line-strong);padding:9px 18px;border-radius:40px;font-size:14px;font-weight:600;color:var(--ink-soft);margin:0;transition:.2s}
+.type-pills input{position:absolute;opacity:0;width:0}
+.type-pills label:has(input:checked){background:var(--ink);color:var(--plaster);border-color:var(--ink)}
+#formMsg{font-size:14px;color:var(--terra-deep);font-weight:700;margin-top:14px;min-height:20px}
+@media(max-width:880px){.quote-wrap{grid-template-columns:1fr;gap:40px}}
+
+/* ===== CTA 大色块 ===== */
+.cta-band{background:var(--terra);color:#fff;text-align:center;padding:90px 0}
+.cta-band h2{font-family:var(--serif);font-weight:900;font-size:clamp(30px,5vw,52px);line-height:1.05;margin-bottom:22px}
+.cta-band p{font-size:19px;opacity:.95;max-width:540px;margin:0 auto 36px;line-height:1.6}
+
+/* ===== 装饰笔刷 ===== */
+.brush-deco{position:absolute;pointer-events:none;z-index:0;opacity:.85}
+
+/* ===== 项目详情灯箱 ===== */
+.projbox{position:fixed;inset:0;z-index:210;background:rgba(20,16,12,.93);display:none;overflow-y:auto;padding:40px 20px}
+.projbox.open{display:block}
+.pj-inner{max-width:920px;margin:0 auto;background:var(--plaster);border:2px solid var(--ink)}
+.pj-head{padding:32px 36px 24px;border-bottom:1px solid var(--line)}
+.pj-meta{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:12px}
+.pj-head h3{font-family:var(--serif);font-weight:900;font-size:clamp(26px,4vw,38px);line-height:1.08}
+.pj-body{padding:28px 36px 36px}
+.pj-desc{font-size:16px;line-height:1.8;color:var(--ink-soft);margin-bottom:28px}
+.pj-gallery{display:flex;flex-direction:column;gap:14px}
+.pj-gallery img{width:100%;border:1px solid var(--line);background:var(--plaster-2)}
+.pj-gallery img.pj-main{border:2px solid var(--ink)}
+.pj-close{position:fixed;top:24px;right:30px;width:48px;height:48px;border:1.5px solid rgba(255,255,255,.55);background:rgba(20,16,12,.6);color:#fff;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:211}
+.pj-close:hover{background:var(--terra);border-color:var(--terra)}
+@media(max-width:560px){.pj-head,.pj-body{padding-left:20px;padding-right:20px}}
+
+/* 真实图片卡片 */
+.work-card img.cover{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.work-card:hover img.cover{transform:scale(1.06)}
+
+/* 二维码真实图 */
+.qr-real{width:160px;height:160px;object-fit:cover;border:1px solid var(--line)}
+
+/* ============================================================
+   手机端优化 (≤768px) — 只影响手机，桌面不变
+   ============================================================ */
+@media(max-width:768px){
+  /* --- 通用间距收紧 --- */
+  .section{padding:48px 0}
+  .wrap{padding:0 18px}
+  .sec-head{margin-bottom:32px}
+  .page-hero{padding:48px 0 36px}
+  .cta-band{padding:56px 0}
+
+  /* --- HERO：手机改成干净的单张大图，不用拼贴 --- */
+  .home-hero{padding:32px 0 8px;min-height:auto}
+  .hero-grid{gap:28px}
+  .home-hero h1{font-size:40px;line-height:1.02}
+  .home-hero .sub-name{font-size:12px;letter-spacing:.22em;margin:12px 0 20px}
+  .home-hero .lead{font-size:16px;margin-bottom:26px}
+  .hero-eyebrow{margin-bottom:18px;font-size:12px}
+  .hero-cta{margin-bottom:30px;gap:12px}
+  .hero-cta .btn{padding:13px 22px;font-size:14px}
+  /* 拼贴改单图：隐藏装饰blob和第二张，主图铺满 */
+  .hero-art{aspect-ratio:16/11;max-width:100%;margin:0}
+  .hero-art .blob{display:none}
+  .hero-art .f1{position:relative;inset:auto;width:100%;height:100%;box-shadow:8px 8px 0 var(--terra);border-width:2px}
+  .hero-art .f2{display:none}
+  .hero-stats .num{font-size:26px}
+  .hero-stats .lbl{font-size:10px}
+  .hero-stats .stat{padding:16px 4px}
+
+  /* --- 标题统一缩小 --- */
+  .sec-title{font-size:28px}
+  .page-hero h1{font-size:40px}
+  .page-hero .ph-lead{font-size:16px;margin-top:18px}
+  .sec-sub{font-size:15px}
+
+  /* --- 作品网格：手机单列，统一比例，间距收紧 --- */
+  .work-grid{grid-template-columns:1fr;gap:14px}
+  .work-card,.work-card.wide{grid-column:span 1;aspect-ratio:4/3}
+  .filter-bar{gap:8px;margin-bottom:28px}
+  .filter-bar button{padding:8px 16px;font-size:13px}
+  /* 手机上作品卡的标题常驻显示（不靠hover） */
+  .work-overlay{opacity:1;background:linear-gradient(to top,rgba(36,30,24,.82),transparent 50%)}
+  .work-overlay .wt{font-size:17px}
+  .work-overlay .zoom{width:34px;height:34px;font-size:15px;top:14px;right:14px}
+
+  /* --- 服务卡 --- */
+  .svc{padding:28px 22px}
+  .svc h3{font-size:21px}
+
+  /* --- 流程 --- */
+  .process{gap:24px 16px}
+  .step .step-no{width:56px;height:56px;font-size:20px;margin-bottom:14px}
+  .step h4{font-size:17px}
+
+  /* --- 关于 --- */
+  .about-grid{gap:28px}
+  .about-img{max-width:100%}
+  .about-quote{font-size:20px;padding-left:16px;margin:22px 0}
+  .about-text p{font-size:15px}
+
+  /* --- 数字 --- */
+  .bignum .n{font-size:42px}
+  .bignum .l{font-size:13px}
+
+  /* --- 客户chip --- */
+  .client-chip{padding:11px 20px;font-size:14px}
+
+  /* --- 联系表单 --- */
+  .quote-form{padding:24px 18px}
+  .cm .cm-val{font-size:17px}
+  .qr-card{margin-top:24px}
+
+  /* --- FAQ --- */
+  .faq-q{font-size:17px;padding:20px 0}
+
+  /* --- 项目详情灯箱 --- */
+  .projbox{padding:0}
+  .pj-inner{border:none;min-height:100vh}
+  .pj-head{padding:24px 20px 18px}
+  .pj-head h3{font-size:24px}
+  .pj-body{padding:20px}
+  .pj-desc{font-size:15px;line-height:1.7}
+  .pj-close{top:14px;right:16px;width:42px;height:42px}
+
+  /* --- CTA --- */
+  .cta-band h2{font-size:28px}
+  .cta-band p{font-size:16px}
+
+  /* --- 页脚 --- */
+  footer.site{padding:48px 0 28px}
+}
+
+/* 超窄屏 (≤380px) 再收一档 */
+@media(max-width:380px){
+  .home-hero h1,.page-hero h1{font-size:34px}
+  .sec-title{font-size:25px}
+  .hero-stats .num{font-size:23px}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="brand">尤浈棋<span class="dot"></span><span data-zh style="font-size:15px;color:var(--ink-faint);font-family:var(--sans);font-weight:700">墙绘</span><span data-de style="font-size:13px;color:var(--ink-faint);font-family:var(--sans);font-weight:700">WANDKUNST</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a class="nl" href="index.html"><span data-zh>首页</span><span data-de>Start</span></a>
+      <a class="nl" href="works.html"><span data-zh>作品集</span><span data-de>Werke</span></a>
+      <a class="nl active" href="services.html"><span data-zh>服务</span><span data-de>Leistungen</span></a>
+      <a class="nl" href="about.html"><span data-zh>关于</span><span data-de>Über mich</span></a>
+      <a class="nl" href="contact.html"><span data-zh>联系报价</span><span data-de>Kontakt</span></a>
+      <div class="lang-toggle"><button data-lang-btn="zh" class="active" onclick="setLang('zh')">中</button><button data-lang-btn="de" onclick="setLang('de')">DE</button></div>
+    </nav>
+    <button class="menu-btn" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span data-zh>服务</span><span data-de>Leistungen</span></div>
+    <h1><span data-zh>我能为你的<br>空间做什么</span><span data-de>Was ich für<br>Ihren Raum tue</span></h1>
+    <p class="ph-lead"><span data-zh>从一面餐厅背景墙，到整个空间的视觉改造。每个项目都是纯手工绘制，按你的空间量身设计。</span><span data-de class="block">Von einer einzelnen Wand bis zur kompletten Raumgestaltung — jedes Projekt handgemalt und individuell entworfen.</span></p>
+    <svg class="ph-deco" viewBox="0 0 300 300"><circle cx="150" cy="150" r="110" fill="#2E5D5A" opacity=".18"/></svg>
+  </div>
+</section>
+
+<!-- 三大服务 -->
+<section class="section">
+  <div class="wrap">
+    <div class="svc-grid reveal">
+      <div class="svc"><div class="svc-no">01</div><h3><span data-zh>商业 / 餐厅墙绘</span><span data-de>Gewerbe & Restaurant</span></h3><p><span data-zh>为餐厅、咖啡馆、店铺打造主题背景墙，营造氛围、强化品牌、制造拍照点。</span><span data-de class="block">Themenwände für Restaurants, Cafés und Läden — Atmosphäre, Markenbild und Fotomotive.</span></p>
+        <ul class="svc-list">
+          <li><span data-zh>主题背景墙</span><span data-de>Themenwand</span></li>
+          <li><span data-zh>品牌氛围营造</span><span data-de>Markenatmosphäre</span></li>
+          <li><span data-zh>打卡拍照墙</span><span data-de>Foto-Wand</span></li>
+        </ul></div>
+      <div class="svc"><div class="svc-no">02</div><h3><span data-zh>品牌 / 连锁定制</span><span data-de>Marken & Filialen</span></h3><p><span data-zh>为连锁品牌门店做统一视觉，如杨国福等餐饮品牌。可多门店复制同一风格。</span><span data-de class="block">Einheitliche Gestaltung für Marken und Filialen — z. B. Yang Guo Fu.</span></p>
+        <ul class="svc-list">
+          <li><span data-zh>品牌风格落地</span><span data-de>Markenstil</span></li>
+          <li><span data-zh>多门店统一</span><span data-de>Mehrere Filialen</span></li>
+          <li><span data-zh>Logo 与 IP 融入</span><span data-de>Logo & IP</span></li>
+        </ul></div>
+      <div class="svc"><div class="svc-no">03</div><h3><span data-zh>私人定制</span><span data-de>Private Aufträge</span></h3><p><span data-zh>家庭、儿童房、私人空间手绘。从草图到上墙，把你的想法变成独一无二的墙面。</span><span data-de class="block">Wandmalerei für Zuhause, Kinderzimmer und private Räume.</span></p>
+        <ul class="svc-list">
+          <li><span data-zh>儿童房 / 卧室</span><span data-de>Kinderzimmer</span></li>
+          <li><span data-zh>客厅装饰墙</span><span data-de>Wohnzimmer</span></li>
+          <li><span data-zh>定制主题</span><span data-de>Individuell</span></li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 流程 -->
+<section class="section dark">
+  <div class="wrap">
+    <div class="sec-head center reveal"><div class="sec-tag"><span data-zh>合作流程</span><span data-de>Ablauf</span></div><h2 class="sec-title"><span data-zh>从想法到成品</span><span data-de>Von der Idee zum Werk</span></h2></div>
+    <div class="process reveal" style="--ink:#E9E2D4">
+      <div class="step"><div class="step-no" style="background:#322a22;border-color:#E9E2D4;color:#D88A3F">1</div><h4 style="color:#E9E2D4"><span data-zh>免费沟通</span><span data-de>Erstgespräch</span></h4><p style="color:rgba(233,226,212,.7)"><span data-zh>了解你的空间、风格与预算。</span><span data-de class="block">Raum, Stil und Budget besprechen.</span></p></div>
+      <div class="step"><div class="step-no" style="background:#322a22;border-color:#E9E2D4;color:#D88A3F">2</div><h4 style="color:#E9E2D4"><span data-zh>设计草图</span><span data-de>Entwurf</span></h4><p style="color:rgba(233,226,212,.7)"><span data-zh>提供草图与配色，确认后再开工。</span><span data-de class="block">Skizze und Farben, dann Freigabe.</span></p></div>
+      <div class="step"><div class="step-no" style="background:#322a22;border-color:#E9E2D4;color:#D88A3F">3</div><h4 style="color:#E9E2D4"><span data-zh>现场绘制</span><span data-de>Ausführung</span></h4><p style="color:rgba(233,226,212,.7)"><span data-zh>专业材料，现场手工完成。</span><span data-de class="block">Handarbeit mit Profimaterial.</span></p></div>
+      <div class="step"><div class="step-no" style="background:#322a22;border-color:#E9E2D4;color:#D88A3F">4</div><h4 style="color:#E9E2D4"><span data-zh>验收交付</span><span data-de>Übergabe</span></h4><p style="color:rgba(233,226,212,.7)"><span data-zh>满意验收，留下持久作品。</span><span data-de class="block">Abnahme und fertige Wand.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 数字 -->
+<section class="section">
+  <div class="wrap">
+    <div class="bignum-grid reveal">
+      <div class="bignum"><div class="n">50+</div><div class="l"><span data-zh>完成项目</span><span data-de>Projekte</span></div></div>
+      <div class="bignum"><div class="n">8</div><div class="l"><span data-zh>合作城市</span><span data-de>Städte</span></div></div>
+      <div class="bignum"><div class="n">100%</div><div class="l"><span data-zh>手工绘制</span><span data-de>Handarbeit</span></div></div>
+      <div class="bignum"><div class="n">∞</div><div class="l"><span data-zh>定制可能</span><span data-de>Möglichkeiten</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 定价说明 -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal"><div class="sec-tag"><span data-zh>关于价格</span><span data-de>Zur Preisgestaltung</span></div><h2 class="sec-title"><span data-zh>价格怎么算</span><span data-de>Wie sich der Preis ergibt</span></h2>
+    <p class="sec-sub"><span data-zh>每个项目价格不同，主要取决于以下几个因素。告诉我们你的具体情况，就能得到一个清晰的报价。</span><span data-de class="block">Jedes Projekt ist anders. Der Preis ergibt sich aus den folgenden Faktoren — beschreiben Sie Ihr Projekt für ein klares Angebot.</span></p></div>
+    <div class="svc-grid reveal" style="margin-bottom:40px">
+      <div class="svc"><div class="svc-no">01</div><h3 style="font-size:21px"><span data-zh>墙面面积</span><span data-de>Wandfläche</span></h3><p><span data-zh>需要提供墙面的长度和高度。</span><span data-de class="block">Länge und Höhe der Wand.</span></p></div>
+      <div class="svc"><div class="svc-no">02</div><h3 style="font-size:21px"><span data-zh>图案复杂度</span><span data-de>Komplexität</span></h3><p><span data-zh>简单 Logo、线条图、插画、3D 效果、大面积人物和高细节图案，价格不同。</span><span data-de class="block">Logo, Linien, Illustration, 3D oder detailreiche Figuren — je nach Aufwand.</span></p></div>
+      <div class="svc"><div class="svc-no">03</div><h3 style="font-size:21px"><span data-zh>设计需求</span><span data-de>Designbedarf</span></h3><p><span data-zh>已有参考图可二次设计；从零设计价格相应调整。</span><span data-de class="block">Mit Vorlage günstiger, komplett neuer Entwurf entsprechend mehr.</span></p></div>
+      <div class="svc"><div class="svc-no">04</div><h3 style="font-size:21px"><span data-zh>材料选择</span><span data-de>Material</span></h3><p><span data-zh>德国颜料与保护材料成本较高，可选含材料或不含材料报价。</span><span data-de class="block">Mit oder ohne Material — deutsche Farben und Schutzlacke separat.</span></p></div>
+      <div class="svc"><div class="svc-no">05</div><h3 style="font-size:21px"><span data-zh>地点距离</span><span data-de>Entfernung</span></h3><p><span data-zh>北威州（NRW）以内一般不另收车旅；州外按距离另算车旅食宿。</span><span data-de class="block">Innerhalb NRW meist ohne Aufschlag; außerhalb Reise- und Übernachtungskosten.</span></p></div>
+      <div class="svc"><div class="svc-no">06</div><h3 style="font-size:21px"><span data-zh>定金与尾款</span><span data-de>Anzahlung</span></h3><p><span data-zh>确认后支付定金开始设计，画完满意后支付尾款。</span><span data-de class="block">Anzahlung zum Start, Restzahlung nach Fertigstellung.</span></p></div>
+    </div>
+    <div style="text-align:center" class="reveal"><a href="contact.html" class="btn btn-primary"><span data-zh>获取报价</span><span data-de>Angebot anfragen</span> →</a></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="brand">尤浈棋 · YOU ZHENQI</div><p class="f-about"><span data-zh>德国手绘墙绘工作室。专注餐厅、商业空间与私人定制墙面艺术。</span><span data-de class="block">Wandmalerei-Atelier in Deutschland.</span></p></div>
+      <div class="foot-col"><h4><span data-zh>导航</span><span data-de>Menü</span></h4><a href="index.html"><span data-zh>首页</span><span data-de>Start</span></a><a href="works.html"><span data-zh>作品集</span><span data-de>Werke</span></a><a href="services.html"><span data-zh>服务</span><span data-de>Leistungen</span></a><a href="about.html"><span data-zh>关于</span><span data-de>Über mich</span></a><a href="contact.html"><span data-zh>联系</span><span data-de>Kontakt</span></a></div>
+      <div class="foot-col"><h4><span data-zh>联系</span><span data-de>Kontakt</span></h4><a href="contact.html">WeChat / 微信</a><a href="contact.html"><span data-zh>电话</span><span data-de>Telefon</span></a><a href="contact.html">E-Mail</a></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 尤浈棋 · YOU ZHENQI</span><span data-zh>墙绘工作室 · 德国</span><span data-de>Wandmalerei · Deutschland</span></div>
+  </div>
+</footer>
+
+<script>
+/* ===== 全站共用脚本 ===== */
+(function(){
+  // ---- 语言：记住选择 ----
+  const saved = localStorage.getItem('mural_lang') || 'zh';
+  function setLang(l){
+    document.body.classList.toggle('de', l==='de');
+    document.documentElement.lang = l;
+    localStorage.setItem('mural_lang', l);
+    document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+      b.classList.toggle('active', b.getAttribute('data-lang-btn')===l);
+    });
+  }
+  window.setLang = setLang;
+  document.addEventListener('DOMContentLoaded',()=>setLang(saved));
+
+  // ---- 移动菜单 ----
+  window.toggleMenu = function(){
+    const nav=document.getElementById('navLinks');
+    const btn=document.getElementById('menuBtn');
+    nav.classList.toggle('open');
+    btn.classList.toggle('x');
+  };
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('.nav-links a.nl').forEach(a=>a.addEventListener('click',()=>{
+      const nav=document.getElementById('navLinks'), btn=document.getElementById('menuBtn');
+      if(nav){nav.classList.remove('open')} if(btn){btn.classList.remove('x')}
+    }));
+  });
+
+  // ---- 顶栏滚动隐藏 ----
+  let lastY=0;
+  window.addEventListener('scroll',()=>{
+    const h=document.querySelector('header.site'); if(!h)return;
+    const y=window.scrollY;
+    if(y>200 && y>lastY) h.classList.add('hide'); else h.classList.remove('hide');
+    lastY=y;
+  },{passive:true});
+
+  // ---- 滚动渐入 ----
+  document.addEventListener('DOMContentLoaded',()=>{
+    const io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+    }),{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  });
+
+  // ---- 作品筛选 ----
+  window.filterWork = function(cat, btn){
+    document.querySelectorAll('[data-filter-btn]').forEach(b=>b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    document.querySelectorAll('[data-cat]').forEach(item=>{
+      const show = cat==='all' || item.getAttribute('data-cat')===cat;
+      item.style.display = show ? '' : 'none';
+    });
+  };
+
+  // ---- 灯箱 ----
+  window.openLightbox = function(el){
+    const lb=document.getElementById('lightbox'); if(!lb)return;
+    const title=el.getAttribute('data-lb-title')||'';
+    const titleDe=el.getAttribute('data-lb-title-de')||title;
+    const cat=el.getAttribute('data-lb-cat')||'';
+    const img=el.querySelector('img');
+    const lbImg=document.getElementById('lbImg');
+    const lbPh=document.getElementById('lbPh');
+    if(img && img.getAttribute('src')){lbImg.src=img.getAttribute('src');lbImg.style.display='block';lbPh.style.display='none';}
+    else{lbImg.style.display='none';lbPh.style.display='flex';}
+    document.getElementById('lbTitle').textContent=title;
+    document.getElementById('lbTitleDe').textContent=titleDe;
+    document.getElementById('lbCat').textContent=cat;
+    lb.classList.add('open');document.body.style.overflow='hidden';
+  };
+  // ---- 项目详情灯箱（多图 + 描述）----
+  window.openProject = function(card){
+    const lb=document.getElementById('projbox'); if(!lb)return;
+    document.getElementById('pjTitle').textContent=card.getAttribute('data-title')||'';
+    document.getElementById('pjTitleDe').textContent=card.getAttribute('data-title-de')||'';
+    document.getElementById('pjMeta').textContent=card.getAttribute('data-meta')||'';
+    document.getElementById('pjMetaDe').textContent=card.getAttribute('data-meta-de')||'';
+    document.getElementById('pjDesc').textContent=card.getAttribute('data-desc')||'';
+    document.getElementById('pjDescDe').textContent=card.getAttribute('data-desc-de')||'';
+    const imgs=(card.getAttribute('data-imgs')||'').split('|').filter(Boolean);
+    const gal=document.getElementById('pjGallery');
+    gal.innerHTML='';
+    imgs.forEach((src,i)=>{
+      const im=document.createElement('img');
+      im.src=src; im.loading='lazy'; im.alt='';
+      if(i===0)im.className='pj-main';
+      gal.appendChild(im);
+    });
+    lb.classList.add('open');document.body.style.overflow='hidden';
+  };
+  window.closeProject = function(){
+    const lb=document.getElementById('projbox'); if(!lb)return;
+    lb.classList.remove('open');document.body.style.overflow='';
+  };
+  window.closeLightbox = function(){
+    const lb=document.getElementById('lightbox'); if(!lb)return;
+    lb.classList.remove('open');document.body.style.overflow='';
+  };
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){window.closeLightbox&&window.closeLightbox();window.closeProject&&window.closeProject();}});
+
+  // ---- FAQ 手风琴 ----
+  window.toggleFaq = function(el){
+    const item=el.closest('.faq-item');
+    item.classList.toggle('open');
+  };
+
+  // ---- 报价表单（前端校验 + mailto 兜底，无后端也能用）----
+  window.submitQuote = function(e){
+    e.preventDefault();
+    const f=e.target;
+    const name=f.qname.value.trim();
+    const contact=f.qcontact.value.trim();
+    const msg=f.qmsg.value.trim();
+    const typeEl=f.querySelector('input[name="qtype"]:checked');
+    const type=typeEl?typeEl.value:'-';
+    if(!name||!contact){
+      document.getElementById('formMsg').textContent = document.body.classList.contains('de')
+        ? 'Bitte Name und Kontakt ausfüllen.' : '请填写姓名和联系方式。';
+      return;
+    }
+    const subject=encodeURIComponent('墙绘咨询 / Anfrage — '+name);
+    const body=encodeURIComponent(
+      `姓名/Name: ${name}\n联系方式/Kontakt: ${contact}\n类型/Typ: ${type}\n\n${msg}`
+    );
+    // 改成她的真实邮箱
+    window.location.href=`mailto:youxiangyun1015@gmail.com?subject=${subject}&body=${body}`;
+    document.getElementById('formMsg').textContent = document.body.classList.contains('de')
+      ? 'Danke! Ihr Mailprogramm öffnet sich…' : '谢谢！正在打开你的邮箱…';
+    f.reset();
+  };
+})();
+
+</script>
+</body>
+</html>
