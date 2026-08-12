@@ -19,6 +19,9 @@
   <!-- 滚动进度条 -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
+  <!-- 极光流动背景 -->
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
   <!-- 自定义光标辉光（桌面端） -->
   <div class="cursor-glow" id="cursorGlow"></div>
 
@@ -63,13 +66,21 @@
       <p class="hero__role reveal" data-i18n="hero.role">视觉艺术家 · 混合媒介创作者</p>
       <h1 class="hero__name reveal" data-i18n="hero.name">林 默</h1>
       <p class="hero__tagline reveal" data-i18n="hero.tagline">用光、色与静默，在画布与代码之间造一座桥。</p>
-      <a href="#works" class="hero__cta reveal" data-i18n="hero.cta">浏览作品</a>
+      <a href="#works" class="hero__cta reveal" data-i18n="hero.cta">进入作品</a>
     </div>
     <div class="hero__scroll">
       <span data-i18n="hero.scroll">向下滚动</span>
       <span class="hero__scroll-line"></span>
     </div>
   </section>
+
+  <!-- 跑马灯 -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span data-i18n="marquee">绘画 · 数字艺术 · 雕塑 · 摄影 · 光影 · 静默 ·</span>
+      <span data-i18n="marquee">绘画 · 数字艺术 · 雕塑 · 摄影 · 光影 · 静默 ·</span>
+    </div>
+  </div>
 
   <!-- About -->
   <section class="about" id="about">
@@ -89,11 +100,11 @@
     </div>
   </section>
 
-  <!-- Works -->
+  <!-- Works（合集封面墙） -->
   <section class="works" id="works">
     <div class="section-head reveal">
-      <h2 data-i18n="works.title">作品集</h2>
-      <p class="section-sub" data-i18n="works.subtitle">点击筛选，悬停感受细节。</p>
+      <h2 data-i18n="works.title">作品合集</h2>
+      <p class="section-sub" data-i18n="works.subtitle">点击封面进入合集，左右滑动浏览作品。</p>
     </div>
     <div class="works__filters reveal" id="filters">
       <button class="chip active" data-filter="all" data-i18n="filter.all">全部</button>
@@ -102,8 +113,30 @@
       <button class="chip" data-filter="sculpture" data-i18n="filter.sculpture">雕塑</button>
       <button class="chip" data-filter="photography" data-i18n="filter.photography">摄影</button>
     </div>
-    <div class="works__grid" id="worksGrid"><!-- JS 注入 --></div>
+    <div class="works__grid" id="worksGrid"><!-- JS 注入合集封面 --></div>
   </section>
+
+  <!-- 合集详情浮层（画廊查看器：顶部大图 + 底部弧形缩略图） -->
+  <div class="collection-view" id="collectionView" aria-hidden="true">
+    <button class="cv__close" id="cvClose" aria-label="close">✕</button>
+    <!-- 顶部大图展示区 -->
+    <div class="cv__stage" id="cvStage">
+      <div class="cv__main-art" id="cvMainArt"></div>
+      <div class="cv__main-info" id="cvMainInfo">
+        <p class="cv__cat" id="cvCat"></p>
+        <h2 class="cv__title" id="cvTitle"></h2>
+        <p class="cv__year" id="cvYear"></p>
+        <p class="cv__main-desc" id="cvMainDesc"></p>
+      </div>
+    </div>
+    <!-- 底部弧形缩略图条（中心关闭按钮） -->
+    <div class="cv__arc" id="cvArc">
+      <div class="cv__arc-track" id="cvArcTrack"><!-- JS 注入缩略图 --></div>
+      <button class="cv__arc-close" id="cvArcClose" aria-label="close collection">✕</button>
+    </div>
+    <!-- 计数器 -->
+    <span class="cv__counter" id="cvCounter"></span>
+  </div>
 
   <!-- Exhibitions -->
   <section class="exhibitions" id="exhibitions">
@@ -137,6 +170,9 @@
       </div>
     </div>
   </section>
+
+  <!-- 胶片颗粒叠层 -->
+  <div class="grain" aria-hidden="true"></div>
 
   <footer class="footer">
     <span>© <span id="year"></span> Lin Mo · <span data-i18n="footer.rights">保留所有权利。</span></span>
