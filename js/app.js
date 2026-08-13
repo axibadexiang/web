@@ -43,11 +43,13 @@
       await audio.play();
       musicPlayRequested = true;
       localStorage.setItem("yz-music-play", "true");
+      updateMusicUI();
+      return true;
     } catch (err) {
-      musicPlayRequested = false;
-      localStorage.setItem("yz-music-play", "false");
+      // 被浏览器自动播放策略拦截：保留 intent，等待用户首次交互再启动
+      updateMusicUI();
+      return false;
     }
-    updateMusicUI();
   }
 
   function pauseMusic() {
@@ -58,7 +60,7 @@
   }
 
   function toggleMusic() {
-    if (audio.paused) tryPlay();
+    if (audio.paused) { musicPlayRequested = true; tryPlay(); }
     else pauseMusic();
   }
 
@@ -394,21 +396,21 @@
     $("#musicMute").addEventListener("click", toggleMute);
     updateMusicUI();
 
-    // 进入页面自动播放（浏览器自动播放策略可能拦截，则监听首次交互再启动）
+    // 进入页面尝试自动播放；若被浏览器拦截，则监听用户首次交互（点击/触摸/滚动/按键）再启动
     if (musicPlayRequested) {
       const startOnGesture = () => {
         if (musicPlayRequested && audio.paused) tryPlay();
         window.removeEventListener("pointerdown", startOnGesture);
         window.removeEventListener("touchstart", startOnGesture);
         window.removeEventListener("keydown", startOnGesture);
-        window.removeEventListener("scroll", startOnGesture, { passive: true });
+        window.removeEventListener("scroll", startOnGesture);
       };
-      tryPlay().then(() => {
-        if (audio.paused) {
-          window.addEventListener("pointerdown", startOnGesture, { once: true });
-          window.addEventListener("touchstart", startOnGesture, { once: true });
-          window.addEventListener("keydown", startOnGesture, { once: true });
-          window.addEventListener("scroll", startOnGesture, { once: true, passive: true });
+      tryPlay().then((ok) => {
+        if (!ok && audio.paused) {
+          window.addEventListener("pointerdown", startOnGesture);
+          window.addEventListener("touchstart", startOnGesture);
+          window.addEventListener("keydown", startOnGesture);
+          window.addEventListener("scroll", startOnGesture, { passive: true });
         }
       });
     }
