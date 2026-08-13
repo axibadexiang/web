@@ -1,0 +1,21 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1500' preserveAspectRatio='xMidYMid slice'>
+
+  <defs>
+    <linearGradient id='gradp65' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0' stop-color='#241016'/>
+      <stop offset='0.55' stop-color='#7d4a5a'/>
+      <stop offset='1' stop-color='#241016'/>
+    </linearGradient>
+    <radialGradient id='vigp65' cx='50%' cy='42%' r='75%'>
+      <stop offset='0.45' stop-color='#000000' stop-opacity='0'/>
+      <stop offset='1' stop-color='#000000' stop-opacity='0.55'/>
+    </radialGradient>
+    <filter id='grain'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.06'/></feComponentTransfer><feComposite operator='over' in2='SourceGraphic'/></filter>
+  </defs>
+  <rect width='1200' height='1500' fill='url(#gradp65)'/>
+  <circle cx='360.0' cy='600.0' r='330.0' fill='#e7c2cf' fill-opacity='0.05'/><circle cx='480.0' cy='675.0' r='330.0' fill='#e7c2cf' fill-opacity='0.05'/><circle cx='600.0' cy='750.0' r='330.0' fill='#e7c2cf' fill-opacity='0.05'/><circle cx='720.0000000000001' cy='825.0000000000001' r='330.0' fill='#e7c2cf' fill-opacity='0.05'/><circle cx='840.0' cy='900.0000000000001' r='330.0' fill='#e7c2cf' fill-opacity='0.05'/>
+  <rect width='1200' height='1500' fill='url(#vigp65)'/>
+  <rect width='1200' height='1500' filter='url(#grain)' opacity='0.5'/>
+  <text x='600.0' y='750.0' fill='#ffffff' fill-opacity='0.92' font-family='Georgia, serif' font-size='84' font-style='italic' text-anchor='middle'>PLATE 05</text>
+  <text x='600.0' y='858.0' fill='#ffffff' fill-opacity='0.5' font-family='Helvetica, Arial, sans-serif' font-size='36' letter-spacing='4' text-anchor='middle'>P6 · 05</text>
+</svg>

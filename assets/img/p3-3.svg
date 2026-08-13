@@ -1,0 +1,21 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1500' preserveAspectRatio='xMidYMid slice'>
+
+  <defs>
+    <linearGradient id='gradp33' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0' stop-color='#14241f'/>
+      <stop offset='0.55' stop-color='#5e8b7e'/>
+      <stop offset='1' stop-color='#14241f'/>
+    </linearGradient>
+    <radialGradient id='vigp33' cx='50%' cy='42%' r='75%'>
+      <stop offset='0.45' stop-color='#000000' stop-opacity='0'/>
+      <stop offset='1' stop-color='#000000' stop-opacity='0.55'/>
+    </radialGradient>
+    <filter id='grain'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.06'/></feComponentTransfer><feComposite operator='over' in2='SourceGraphic'/></filter>
+  </defs>
+  <rect width='1200' height='1500' fill='url(#gradp33)'/>
+  <path d='M0 900.0 Q 30 900.0 60 900.0 Q 90 880.8229784558318 120 900.0 Q 150 866.3411606076842 180 900.0 Q 210 860.1002005358379 240 900.0 Q 270 863.6281029269727 300 900.0 Q 330 876.0611142358417 360 900.0 Q 390 894.3551996776054 420 900.0 Q 450 914.0313291075848 480 900.0 Q 510 930.2720998123172 540 900.0 Q 570 939.1012047066039 600 900.0 Q 630 938.3569709865255 660 900.0 Q 690 928.2216130228156 720 900.0 Q 750 911.1766199279571 780 900.0 Q 810 891.3952004764874 840 900.0 Q 870 873.7205360512485 900 900.0 Q 930 862.4800009290104 960 900.0 Q 990 860.4256701350647 1020 900.0 Q 1050 868.0605154950604 1080 900.0 Q 1110 883.5152605903297 1140 900.0 Q 1170 903.0060448184723 1200 900.0 Q 1230 921.7608444355748 1260 900.0' fill='none' stroke='#d8c8a0' stroke-opacity='0.14' stroke-width='1.5'/><path d='M0 1125.0 Q 30 1125.0 60 1125.0 Q 90 1108.060725798149 120 1125.0 Q 150 1097.0388274209831 180 1125.0 Q 210 1095.7845710736542 240 1125.0 Q 270 1104.7361045834655 300 1125.0 Q 330 1120.766399758204 360 1125.0 Q 390 1138.2756132988457 420 1125.0 Q 450 1151.1472731724077 480 1125.0 Q 510 1154.884938265075 540 1125.0 Q 570 1148.1829346266795 600 1125.0 Q 630 1133.3824649459677 660 1125.0 Q 690 1115.6537590945986 720 1125.0 Q 750 1101.1899640845254 780 1125.0 Q 810 1095.0436996387618 840 1125.0 Q 870 1099.3620327573517 900 1125.0 Q 930 1112.6364454427473 960 1125.0 Q 990 1130.2298034366893 1020 1125.0 Q 1050 1145.9962406278062 1080 1125.0 Q 1110 1154.4280869019947 1140 1125.0 Q 1170 1152.5798557699402 1200 1125.0' fill='none' stroke='{accent}' stroke-opacity='0.08' stroke-width='1.5'/>
+  <rect width='1200' height='1500' fill='url(#vigp33)'/>
+  <rect width='1200' height='1500' filter='url(#grain)' opacity='0.5'/>
+  <text x='600.0' y='750.0' fill='#ffffff' fill-opacity='0.92' font-family='Georgia, serif' font-size='84' font-style='italic' text-anchor='middle'>PLATE 03</text>
+  <text x='600.0' y='858.0' fill='#ffffff' fill-opacity='0.5' font-family='Helvetica, Arial, sans-serif' font-size='36' letter-spacing='4' text-anchor='middle'>P3 · 03</text>
+</svg>

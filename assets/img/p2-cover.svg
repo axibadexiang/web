@@ -1,0 +1,21 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1500' preserveAspectRatio='xMidYMid slice'>
+
+  <defs>
+    <linearGradient id='gradp20' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0' stop-color='#2b1d2e'/>
+      <stop offset='0.55' stop-color='#a25b6e'/>
+      <stop offset='1' stop-color='#2b1d2e'/>
+    </linearGradient>
+    <radialGradient id='vigp20' cx='50%' cy='42%' r='75%'>
+      <stop offset='0.45' stop-color='#000000' stop-opacity='0'/>
+      <stop offset='1' stop-color='#000000' stop-opacity='0.55'/>
+    </radialGradient>
+    <filter id='grain'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.06'/></feComponentTransfer><feComposite operator='over' in2='SourceGraphic'/></filter>
+  </defs>
+  <rect width='1200' height='1500' fill='url(#gradp20)'/>
+  <line x1='0' y1='0' x2='216.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='46' y1='0' x2='262.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='92' y1='0' x2='308.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='138' y1='0' x2='354.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='184' y1='0' x2='400.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='230' y1='0' x2='446.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='276' y1='0' x2='492.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='322' y1='0' x2='538.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='368' y1='0' x2='584.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='414' y1='0' x2='630.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='460' y1='0' x2='676.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='506' y1='0' x2='722.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='552' y1='0' x2='768.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='598' y1='0' x2='814.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='644' y1='0' x2='860.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='690' y1='0' x2='906.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='736' y1='0' x2='952.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='782' y1='0' x2='998.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='828' y1='0' x2='1044.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='874' y1='0' x2='1090.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='920' y1='0' x2='1136.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='966' y1='0' x2='1182.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='1012' y1='0' x2='1228.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='1058' y1='0' x2='1274.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='1104' y1='0' x2='1320.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='1150' y1='0' x2='1366.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/><line x1='1196' y1='0' x2='1412.0' y2='1500' stroke='#e0b0a0' stroke-opacity='0.05' stroke-width='1'/>
+  <rect width='1200' height='1500' fill='url(#vigp20)'/>
+  <rect width='1200' height='1500' filter='url(#grain)' opacity='0.5'/>
+  <text x='600.0' y='750.0' fill='#ffffff' fill-opacity='0.92' font-family='Georgia, serif' font-size='84' font-style='italic' text-anchor='middle'>COVER</text>
+  <text x='600.0' y='858.0' fill='#ffffff' fill-opacity='0.5' font-family='Helvetica, Arial, sans-serif' font-size='36' letter-spacing='4' text-anchor='middle'>P2 · 00</text>
+</svg>
