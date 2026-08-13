@@ -500,7 +500,7 @@
     });
   }
 
-  /* ---------------- 星空背景（仅首页 Hero） ---------------- */
+  /* ---------------- 首页 Hero 背景：上半星空 + 下半黑夜大海 ---------------- */
   function initStarfield() {
     const canvas = $("#starfield");
     if (!canvas) return;
@@ -528,47 +528,54 @@
 
     const w = W(),
       h = H();
-    const starCount = Math.min(280, Math.max(80, Math.floor((w * h) / 3200)));
+    const horizon = h * 0.58; // 海平线
+
+    const starCount = Math.min(
+      260,
+      Math.max(60, Math.floor((w * horizon) / 4200))
+    );
     const palette = ["#ffffff", "#c9dfff", "#ffe9c9", "#e7cfa3"];
     const stars = [];
     for (let i = 0; i < starCount; i++) {
+      const y = Math.random() * (horizon + 10);
       stars.push({
         x: Math.random() * w,
-        y: Math.random() * h,
+        y,
         z: Math.random(),
         size: Math.random() * 1.4 + 0.3,
         baseAlpha: Math.random() * 0.5 + 0.2,
         twinkleSpeed: Math.random() * 0.002 + 0.0005,
         twinklePhase: Math.random() * Math.PI * 2,
         color: palette[Math.floor(Math.random() * palette.length)],
+        reflection: y > horizon * 0.55 && Math.random() < 0.22,
       });
     }
 
     const nebulae = [
       {
-        x: w * 0.25,
-        y: h * 0.35,
-        r: Math.min(w, h) * 0.45,
-        dx: 0.04,
-        dy: -0.02,
+        x: w * 0.22,
+        y: horizon * 0.25,
+        r: Math.min(w, horizon) * 0.42,
+        dx: 0.03,
+        dy: -0.015,
         phase: 0,
         color: [201, 163, 107],
       },
       {
-        x: w * 0.8,
-        y: h * 0.65,
-        r: Math.min(w, h) * 0.38,
-        dx: -0.03,
-        dy: 0.025,
+        x: w * 0.78,
+        y: horizon * 0.42,
+        r: Math.min(w, horizon) * 0.35,
+        dx: -0.025,
+        dy: 0.02,
         phase: 2,
         color: [107, 140, 174],
       },
       {
         x: w * 0.55,
-        y: h * 0.2,
-        r: Math.min(w, h) * 0.42,
-        dx: 0.02,
-        dy: 0.03,
+        y: horizon * 0.15,
+        r: Math.min(w, horizon) * 0.4,
+        dx: 0.018,
+        dy: 0.022,
         phase: 4,
         color: [138, 107, 200],
       },
@@ -576,29 +583,136 @@
 
     const meteors = [];
 
-    const baseResize = () => {
-      const r = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.max(1, Math.floor(r.width * dpr));
-      canvas.height = Math.max(1, Math.floor(r.height * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    baseResize();
-    starfieldResize = baseResize;
-    window.addEventListener("resize", starfieldResize, { passive: true });
+    // 海浪层：越远越柔和、越近越明显（振幅加大，起伏更明显）
+    const waveLayers = [];
+    for (let i = 0; i < 6; i++) {
+      const depth = i / 5; // 0 远 -> 1 近
+      waveLayers.push({
+        yBase: horizon + h * (0.02 + depth * 0.36),
+        amplitude: 14 + depth * 34,
+        frequency: 0.004 + depth * 0.002,
+        speed: 0.22 + depth * 0.3,
+        phase: Math.random() * Math.PI * 2,
+        alpha: 0.09 + depth * 0.14,
+        stroke: depth < 0.5,
+      });
+    }
+
+    // 船只（数量增多、分布更散）
+    const boats = [];
+    const boatCount = Math.min(9, Math.max(5, Math.floor(w / 230)));
+    for (let i = 0; i < boatCount; i++) {
+      boats.push({
+        x: Math.random() * w,
+        y: horizon + h * (0.06 + Math.random() * 0.34),
+        size: 10 + Math.random() * 18,
+        speed: 0.05 + Math.random() * 0.09,
+        dir: Math.random() < 0.5 ? 1 : -1,
+        phase: Math.random() * Math.PI * 2,
+        bobSpeed: 0.7 + Math.random() * 0.7,
+        sailColor:
+          Math.random() < 0.5
+            ? "rgba(220,230,245,0.9)"
+            : "rgba(200,215,235,0.85)",
+      });
+    }
+
+    // 星光在水面的倒影
+    const reflections = stars
+      .filter((s) => s.reflection)
+      .map((s) => ({
+        x: s.x,
+        yBase: horizon + (horizon - s.y) * (0.15 + Math.random() * 0.25),
+        alpha: s.baseAlpha * 0.35,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.0015 + Math.random() * 0.002,
+        width: 8 + Math.random() * 24,
+      }));
 
     let lastT = performance.now();
+
+    function drawBoat(x, y, size, dir, sailColor, isLight) {
+      ctx.save();
+      ctx.globalAlpha = isLight ? 0.55 : 1;
+      ctx.translate(x, y);
+      ctx.scale(dir, 1);
+
+      // 船身
+      ctx.fillStyle = "#05080e";
+      ctx.beginPath();
+      ctx.moveTo(-size, -size * 0.25);
+      ctx.quadraticCurveTo(
+        -size * 0.3,
+        size * 0.55,
+        size * 0.35,
+        size * 0.55
+      );
+      ctx.quadraticCurveTo(
+        size * 0.9,
+        size * 0.45,
+        size,
+        -size * 0.25
+      );
+      ctx.closePath();
+      ctx.fill();
+
+      // 桅杆
+      ctx.strokeStyle = "rgba(200,210,230,0.7)";
+      ctx.lineWidth = Math.max(1, size * 0.05);
+      ctx.beginPath();
+      ctx.moveTo(0, size * 0.4);
+      ctx.lineTo(0, -size * 1.1);
+      ctx.stroke();
+
+      // 帆
+      ctx.fillStyle = sailColor;
+      ctx.beginPath();
+      ctx.moveTo(size * 0.08, -size * 1.0);
+      ctx.quadraticCurveTo(
+        size * 0.72,
+        -size * 0.55,
+        size * 0.08,
+        -size * 0.12
+      );
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.restore();
+    }
+
     function frame(now) {
       if (!document.body.contains(canvas)) return;
       const Wv = W(),
         Hv = H();
-      ctx.clearRect(0, 0, Wv, Hv);
-
+      const horizon = Hv * 0.58;
       const isLight =
         document.documentElement.getAttribute("data-theme") === "light";
       const globalAlpha = isLight ? 0.45 : 1;
+      const seaAlpha = isLight ? 0.55 : 1;
+      const dt = (now - lastT) * 0.001;
+      lastT = now;
 
-      // 星云
+      ctx.clearRect(0, 0, Wv, Hv);
+      ctx.globalAlpha = 1;
+
+      // 夜空
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, horizon);
+      skyGrad.addColorStop(0, "#07080c");
+      skyGrad.addColorStop(0.5, "#0b0e16");
+      skyGrad.addColorStop(1, "#121a2b");
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, Wv, horizon);
+
+      // 海平线辉光
+      const glowAlpha = 0.35 * globalAlpha;
+      const glow = ctx.createLinearGradient(0, horizon - 20, 0, horizon + 45);
+      glow.addColorStop(0, "rgba(40,55,85,0)");
+      glow.addColorStop(0.5, `rgba(50,70,110,${glowAlpha})`);
+      glow.addColorStop(1, "rgba(40,55,85,0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, horizon - 20, Wv, 65);
+
+      // 星云（只在天空区域飘动）
       if (!prefersReduced) {
         nebulae.forEach((n) => {
           n.x += n.dx;
@@ -606,8 +720,8 @@
           n.phase += 0.0004;
           if (n.x < -n.r) n.x = Wv + n.r;
           if (n.x > Wv + n.r) n.x = -n.r;
-          if (n.y < -n.r) n.y = Hv + n.r;
-          if (n.y > Hv + n.r) n.y = -n.r;
+          if (n.y < -n.r) n.y = horizon + n.r;
+          if (n.y > horizon + n.r) n.y = -n.r;
           const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
           const a = (Math.sin(n.phase) * 0.012 + 0.028) * globalAlpha;
           g.addColorStop(
@@ -623,7 +737,7 @@
             `rgba(${n.color[0]}, ${n.color[1]}, ${n.color[2]}, 0)`
           );
           ctx.fillStyle = g;
-          ctx.fillRect(0, 0, Wv, Hv);
+          ctx.fillRect(0, 0, Wv, horizon + 20);
         });
       }
 
@@ -640,16 +754,20 @@
         });
       }
 
-      // 星星
+      // 星星（只在海平线以上）
       stars.forEach((s) => {
         const tw = Math.sin(now * s.twinkleSpeed + s.twinklePhase) * 0.3 + 1;
         const alpha = Math.max(0, Math.min(1, s.baseAlpha * tw)) * globalAlpha;
         const mx = prefersReduced ? 0 : -starMouse.x * s.z * 16;
         const my = prefersReduced ? 0 : -starMouse.y * s.z * 10;
+        const sx = s.x + mx,
+          sy = s.y + my;
+        if (sy > horizon + 4) return;
+        const fade = sy > horizon - 16 ? Math.max(0, (horizon + 4 - sy) / 20) : 1;
         ctx.beginPath();
-        ctx.arc(s.x + mx, s.y + my, s.size * (0.8 + s.z * 0.7), 0, Math.PI * 2);
+        ctx.arc(sx, sy, s.size * (0.8 + s.z * 0.7), 0, Math.PI * 2);
         ctx.fillStyle = s.color;
-        ctx.globalAlpha = alpha;
+        ctx.globalAlpha = alpha * fade;
         ctx.fill();
       });
       ctx.globalAlpha = 1;
@@ -682,6 +800,77 @@
         ctx.fill();
       }
 
+      // 大海
+      const seaGrad = ctx.createLinearGradient(0, horizon, 0, Hv);
+      seaGrad.addColorStop(0, "#0d1522");
+      seaGrad.addColorStop(0.35, "#070d18");
+      seaGrad.addColorStop(1, "#02040a");
+      ctx.globalAlpha = seaAlpha;
+      ctx.fillStyle = seaGrad;
+      ctx.fillRect(0, horizon, Wv, Hv - horizon);
+      ctx.globalAlpha = 1;
+
+      // 星光倒影
+      if (!prefersReduced) {
+        reflections.forEach((r) => {
+          const flicker = Math.sin(now * r.speed + r.phase) * 0.5 + 0.5;
+          ctx.globalAlpha = r.alpha * flicker * globalAlpha;
+          ctx.fillStyle = "#a9c6e8";
+          ctx.fillRect(
+            r.x,
+            r.yBase + Math.sin(now * 0.001 + r.phase) * 2,
+            r.width,
+            1
+          );
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      // 海浪
+      if (!prefersReduced) {
+        waveLayers.forEach((wave) => {
+          const t = now * 0.001 * wave.speed + wave.phase;
+          ctx.beginPath();
+          const yBase = wave.yBase + Math.sin(t) * wave.amplitude * 0.5;
+          ctx.moveTo(0, Hv);
+          ctx.lineTo(0, yBase);
+          for (let x = 0; x <= Wv; x += 4) {
+            const y =
+              yBase +
+              Math.sin(x * wave.frequency + t) *
+                wave.amplitude *
+                (1 + 0.45 * Math.sin(x * 0.01 + t));
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(Wv, Hv);
+          ctx.closePath();
+          if (wave.stroke) {
+            ctx.strokeStyle = `rgba(130,155,190,${
+              wave.alpha * globalAlpha
+            })`;
+            ctx.lineWidth = 1.3;
+            ctx.stroke();
+          } else {
+            ctx.fillStyle = `rgba(25,45,75,${wave.alpha * seaAlpha})`;
+            ctx.fill();
+          }
+        });
+      }
+
+      // 船只
+      boats.forEach((b) => {
+        if (!prefersReduced) {
+          b.x += b.speed * b.dir * (dt * 60);
+          if (b.x > Wv + 80) b.x = -80;
+          if (b.x < -80) b.x = Wv + 80;
+          b.phase += b.bobSpeed * dt;
+        }
+        const bob = Math.sin(b.phase + now * 0.001 * b.bobSpeed) * 6;
+        const waveY = b.y + bob;
+        drawBoat(b.x, waveY, b.size, b.dir, b.sailColor, isLight);
+      });
+
+      ctx.globalAlpha = 1;
       starfieldRAF = requestAnimationFrame(frame);
     }
     starfieldRAF = requestAnimationFrame(frame);
