@@ -20,7 +20,7 @@
   const starMouse = { x: 0, y: 0 };
 
   /* ---------------- 背景音频 ---------------- */
-  const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
+  const audio = new Audio("./bg.mp3");
   audio.crossOrigin = "anonymous";
   audio.loop = true;
   audio.preload = "metadata";
